@@ -7,10 +7,12 @@ stores well-known location for history files for different os's and browsers
 import getpass
 
 
+# returns the active login name
 def get_os_user():
     current_user = getpass.getuser()
     return current_user
 
 
+# OS & browser constants
 OPERA_WIN_PATH = f'C:\\Users\\{get_os_user()}\\AppData\\Roaming\\Opera Software\\Opera GX Stable\\History'
 CHROME_WIN_PATH = f'C:\\Users\\{get_os_user()}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\History'

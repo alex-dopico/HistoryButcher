@@ -5,7 +5,7 @@ A collection of queries to the history file.
     TODO: fix visit duration format
     TODO: fix the 'today' design error
 """
-from db_connection import Connection
+from db_connection.Connection import Connection
 import resources
 import time
 
@@ -14,8 +14,8 @@ def select_all_records():
     today = time.strftime("_%Y_%m_%d")
     current_user = resources.get_os_user()
     database = f'{current_user}{today}_history'
-    conn = Connection.connect(database)
-    cur = conn.cursor()
+    conn = Connection(database)
+    cur = conn.connection.cursor()
 
     cur.execute("SELECT DISTINCT(u.title), SUM(v.visit_duration)\n"
                 "FROM urls AS u\n"

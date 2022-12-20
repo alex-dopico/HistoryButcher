@@ -9,25 +9,35 @@ from sqlite3 import Error
 from os import error
 
 
-# static method to return connection object
-def connect(db_file):
-    conn = None
-
-    # DAMAGE CONTROL #####################
-    # Try to manage db and io errors:
-    try:
-        conn = sqlite3.connect(db_file)
-    except Error as sql_err:
-        print('Not possible to connect')
-        print(sql_err)
-    except error as io_err:
-        print(io_err)
-    ######################################
-
-    return conn
-
-
 class Connection:
 
+    connection = None
+    db_file_path = None
+
     def __init__(self, db_file_path):
+        self.connection = self.connect()
         self.db_file_path = db_file_path
+
+    def get_connection(self):
+        if self.connection is None:
+            print('This is not possible; anyway, restart')
+            return None
+
+        return self.connection
+
+    @classmethod
+    def connect(cls, db_file_path):
+        conn = None
+
+        # DAMAGE CONTROL #####################
+        # Try to manage db and io errors:
+        try:
+            conn = sqlite3.connect(db_file_path)
+        except Error as sql_err:
+            print('Not possible to connect')
+            print(sql_err)
+        except error as io_err:
+            print(io_err)
+        ######################################
+
+        return conn

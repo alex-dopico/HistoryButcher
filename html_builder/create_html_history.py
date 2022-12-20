@@ -28,4 +28,3 @@ def build_html_file():
     html_file = open('history_stats.html', 'w')
     html_file.write(html_result)
     html_file.close()
-
