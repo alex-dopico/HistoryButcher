@@ -3,6 +3,7 @@ A collection of queries to the history file.
     TODO: write views in this file, query them in a separate file
     TODO: write stats and show them --> pyplot
     TODO: fix visit duration format
+    TODO: fix the 'today' design error
 """
 from db_connection import Connection
 import resources
@@ -11,7 +12,8 @@ import time
 
 def select_all_records():
     today = time.strftime("_%Y_%m_%d")
-    database = f'{resources.get_os_user()}{today}_history'
+    current_user = resources.get_os_user()
+    database = f'{current_user}{today}_history'
     conn = Connection.connect(database)
     cur = conn.cursor()
 
@@ -24,8 +26,10 @@ def select_all_records():
 
     rows = cur.fetchall()
 
-    for row in rows:
+    """ debug purpose
+        for row in rows:
         print(row[0])
         print(row[1])
+        """
 
     return rows

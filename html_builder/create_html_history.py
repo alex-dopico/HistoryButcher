@@ -2,6 +2,7 @@
 Builds an html template and interpolates the data
 returned by the queries
     TODO: enum tag builder
+    TODO: form controls to query stats
 """
 from history_queries import query_history
 
