@@ -1,6 +1,7 @@
 """
 Describes a connection to the database file
 and returns a connection object
+    TODO: accept various db engines in order to expand number of browsers
     TODO: expand constructor to load database options / parameters
     TODO: expand damage control operations through various types of error
 """
@@ -15,8 +16,8 @@ class Connection:
     db_file_path = None
 
     def __init__(self, db_file_path):
-        self.connection = self.connect()
         self.db_file_path = db_file_path
+        self.connection = self.__connect(db_file_path)
 
     def get_connection(self):
         if self.connection is None:
@@ -26,7 +27,7 @@ class Connection:
         return self.connection
 
     @classmethod
-    def connect(cls, db_file_path):
+    def __connect(cls, db_file_path):
         conn = None
 
         # DAMAGE CONTROL #####################
