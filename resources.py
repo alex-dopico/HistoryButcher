@@ -4,7 +4,7 @@ stores well-known location for history files for different os's and browsers
     TODO: manage exceptions in get_os_user()
     TODO: automatize getting the login name, params: OS, browser
 """
-from os_file_operations.get_history_file import get_current_user
+from os_file_operations.get_os_info import get_current_user
 
 current_user = get_current_user()
 

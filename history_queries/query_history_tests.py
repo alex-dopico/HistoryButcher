@@ -8,10 +8,11 @@ from sqlite3 import Connection
 from db_connection.Connection import *
 import query_history
 import time
+from os_file_operations.get_os_info import get_current_user
 
 
 def get_conn():
-    current_user = getpass.getuser()
+    current_user = get_current_user()
     today = time.strftime("_%Y_%m_%d")
     database = f'{current_user}{today}_history'
     connection = Connection.connect(database)

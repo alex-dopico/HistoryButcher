@@ -6,13 +6,14 @@ A collection of queries to the history file.
     TODO: fix the 'today' design error
 """
 from db_connection.Connection import Connection
+from os_file_operations.get_os_info import get_current_user
 import resources
 import time
 
 
 def select_all_records():
     today = time.strftime("_%Y_%m_%d")
-    current_user = resources.get_os_user()
+    current_user = get_current_user()
     database = f'{current_user}{today}_history'
     conn = Connection(database)
     cur = conn.connection.cursor()

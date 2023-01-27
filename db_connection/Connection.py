@@ -14,8 +14,7 @@ class Connection:
 
     """ describes a connection """
     def __init__(self, db_file_path):
-        self.db_file_path = db_file_path
-        self.connection = self.__connect(db_file_path)
+        self.connection = self._connect(db_file_path)
 
     def get_connection(self):
         if self.connection is None:
@@ -25,7 +24,7 @@ class Connection:
         return self.connection
 
     @classmethod
-    def __connect(cls, db_file_path):
+    def _connect(cls, db_file_path):
         conn = None
 
         # DAMAGE CONTROL #####################
