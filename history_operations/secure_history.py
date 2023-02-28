@@ -2,7 +2,6 @@
 Copia el historial de navegacion con el nombre cambiado a fecha actual
 """
 import shutil
-import time
 import resources
 from os import error
 
@@ -10,15 +9,11 @@ from os import error
 def secure_user_history():
     try:
         # retrieves appropriate path to history
-        path = resources.CHROME_WIN_PATH
-
-        # formats a time string
-        today = time.strftime("_%Y_%m_%d")
+        history_path = resources.get_browser_path()
+        destination_path = resources.DESTINATION
 
         # shutil copies db file from browser path to local path
-        src_history_path = path
-        dst_history_path = f'{resources.get_os_user()}{today}_history'
-        shutil.copy(src_history_path, dst_history_path)
+        shutil.copyfile(history_path, destination_path)
 
         # if ok
         print('Successfully secured')
